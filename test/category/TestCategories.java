@@ -80,11 +80,11 @@ public class TestCategories {
             WebElement addCategoryButton = driver.findElement(By.className("pull-right"));
             addCategoryButton.click();
 
-            WebElement titleCategoriesField = driver.findElement(By.id("title"));
-            titleCategoriesField.sendKeys(Helper.getRandomText());
+            WebElement titleCategoryField = driver.findElement(By.id("title"));
+            titleCategoryField.sendKeys(Helper.getRandomText());
 
-            WebElement saveCategoriesButton = driver.findElement(By.id("save-category-button"));
-            saveCategoriesButton.click();
+            WebElement saveCategoryButton = driver.findElement(By.id("save-category-button"));
+            saveCategoryButton.click();
 
             String expectedUrl = "http://bvtest.school.cubes.rs/admin/categories";
             String actualUrl = driver.getCurrentUrl();
@@ -113,12 +113,12 @@ public class TestCategories {
         WebElement editButton = lastRow.findElement(By.className("btn-default"));
         editButton.click();
 
-        WebElement titleCategoriesField = driver.findElement(By.id("title"));
-        titleCategoriesField.clear();
-        titleCategoriesField.sendKeys(Helper.getRandomText());
+        WebElement titleCategoryField = driver.findElement(By.id("title"));
+        titleCategoryField.clear();
+        titleCategoryField.sendKeys(Helper.getRandomText());
 
-        WebElement saveCategoriesButton = driver.findElement(By.id("save-category-button"));
-        saveCategoriesButton.click();
+        WebElement saveCategoryButton = driver.findElement(By.id("save-category-button"));
+        saveCategoryButton.click();
 
         String expectedUrl = "http://bvtest.school.cubes.rs/admin/categories";
         String actualUrl = driver.getCurrentUrl();
