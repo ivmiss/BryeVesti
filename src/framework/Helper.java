@@ -10,4 +10,8 @@ public class Helper {
         return "prIVM" + (int)(Math.random() * 250 + 1);
         
     }
+    
+    public static int getRandomRegion(int max){
+       return (int) (Math.random() * max);
+  }
 }

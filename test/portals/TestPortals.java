@@ -3,6 +3,8 @@ package portals;
 
 import static category.TestCategories.driver;
 import static category.TestCategories.wait;
+import framework.Helper;
+import java.util.List;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -55,6 +57,26 @@ public class TestPortals {
     }
 
    
-    // @Test
-    // public void hello() {}
+    @Test
+    public void testCreateNewRegion() {
+            
+            WebElement addPortalButton = driver.findElement(By.className("pull-right"));
+            addPortalButton.click();
+            
+            WebElement titlePortalField = driver.findElement(By.id("title"));
+            titlePortalField.sendKeys(Helper.getRandomText());
+            
+            WebElement urlPortalField = driver.findElement(By.id("url"));
+            urlPortalField.sendKeys("http://test.rs");
+            
+            WebElement regionPortalField = driver.findElement(By.cssSelector(".col-md-5 select[name='region_id']"));
+            List<WebElement> regionOptionsList = regionPortalField.findElements(By.cssSelector("option"));
+            
+            WebElement randomOption = regionOptionsList.get(Helper.getRandomRegion(regionOptionsList.size()));
+            randomOption.click();
+                    
+            WebElement savePortalButton = driver.findElement(By.id("save-portal-button"));
+            savePortalButton.click();
+}
+
 }
