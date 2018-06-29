@@ -58,7 +58,7 @@ public class TestPortals {
 
    
     @Test
-    public void testCreateNewRegion() {
+    public void testCreateNewPortal() {
             
             WebElement addPortalButton = driver.findElement(By.className("pull-right"));
             addPortalButton.click();

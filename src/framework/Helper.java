@@ -11,7 +11,20 @@ public class Helper {
         
     }
     
+//    public static int getRandomIntiger(){
+//        return(int)(Math.random() * 1000);
+//    }
+    
+    public static int getRandomIntiger(int range){
+        return(int)(Math.random() * range);
+    }
+    
+
     public static int getRandomRegion(int max){
        return (int) (Math.random() * max);
   }
+    
+    public static String getRandomUrl() {
+        return "http://".concat(getRandomText()).concat(".rs");
+    }
 }

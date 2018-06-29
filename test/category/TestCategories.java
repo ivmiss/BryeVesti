@@ -17,6 +17,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import pages.CategoriesPage;
 
 public class TestCategories {
 
@@ -75,17 +76,24 @@ public class TestCategories {
     @Test
     public void testCreateNewCategory() {
 
-        for (int i = 0; i < 5; i++) {
+        for (int i = 0; i < 1; i++) {
 
-            WebElement addCategoryButton = driver.findElement(By.className("pull-right"));
-            addCategoryButton.click();
+            CategoriesPage categoriesPage = new CategoriesPage();
+//            categoriesPage.clickOnAddCategoryButton(driver);
+                    
+//            WebElement addCategoryButton = driver.findElement(By.className("pull-right"));
+//            addCategoryButton.click();
 
-            WebElement titleCategoryField = driver.findElement(By.id("title"));
-            titleCategoryField.sendKeys(Helper.getRandomText());
+//            categoriesPage.sendTextOnTitleField(driver);
+//            WebElement titleCategoryField = driver.findElement(By.id("title"));
+//            titleCategoryField.sendKeys(Helper.getRandomText());
+//
+//            categoriesPage.clickOnSaveCategoryButton(driver);
+//            WebElement saveCategoryButton = driver.findElement(By.id("save-category-button"));
+//            saveCategoryButton.click();
 
-            WebElement saveCategoryButton = driver.findElement(By.id("save-category-button"));
-            saveCategoryButton.click();
-
+            categoriesPage.addNewCategoy(driver);
+            
             String expectedUrl = "http://bvtest.school.cubes.rs/admin/categories";
             String actualUrl = driver.getCurrentUrl();
 
@@ -104,22 +112,9 @@ public class TestCategories {
     @Test
     public void testEditLastCategory() {
 
-        WebElement tBody = wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("ui-sortable")));
-        List<WebElement> rows = tBody.findElements(By.tagName("tr"));
-
-        System.out.println("Number of rows: " + rows.size());
-
-        WebElement lastRow = rows.get(rows.size() - 1);
-        WebElement editButton = lastRow.findElement(By.className("btn-default"));
-        editButton.click();
-
-        WebElement titleCategoryField = driver.findElement(By.id("title"));
-        titleCategoryField.clear();
-        titleCategoryField.sendKeys(Helper.getRandomText());
-
-        WebElement saveCategoryButton = driver.findElement(By.id("save-category-button"));
-        saveCategoryButton.click();
-
+        CategoriesPage categoriesPage = new CategoriesPage();
+        categoriesPage.editLastCategory(driver, wait);
+       
         String expectedUrl = "http://bvtest.school.cubes.rs/admin/categories";
         String actualUrl = driver.getCurrentUrl();
 
@@ -134,19 +129,32 @@ public class TestCategories {
     }
 
     @Test
-    public void testDeleteFirstCategory() {
-
-        WebElement tBody = wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("ui-sortable")));
-        List<WebElement> rows = tBody.findElements(By.tagName("tr"));
-
-        System.out.println("Number of rows: " + rows.size());
+    public void testEditFirstCategory(){
         
-        WebElement firstRow = rows.get(0);
+        CategoriesPage categoriesPage = new CategoriesPage();
+        categoriesPage.editFirstCategory(driver, wait);
         
-        WebElement deleteButton = firstRow.findElement(By.cssSelector("button[title='Delete']"));
-        deleteButton.click();
-        
-        WebElement deleteConfirm = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("#categoryDeleteDialog button[data-task='confirm']")));
-        deleteConfirm.click();
+        Assert.assertEquals("Url doesn't match!", "http://bvtest.school.cubes.rs/admin/categories", driver.getCurrentUrl() );
+    }
+    
+    
+    @Test
+    public void testDeleteCategory() {
+        CategoriesPage categoriesPage = new CategoriesPage();
+//        categoriesPage.deleteFirstCategory(driver, wait);
+        categoriesPage.deleteRandomCategory(driver, wait);
+//        categoriesPage.deleteLastCategory(driver, wait);
+//        WebElement tBody = wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("ui-sortable")));
+//        List<WebElement> rows = tBody.findElements(By.tagName("tr"));
+//
+//        System.out.println("Number of rows: " + rows.size());
+//        
+//        WebElement firstRow = rows.get(0);
+//        
+//        WebElement deleteButton = firstRow.findElement(By.cssSelector("button[title='Delete']"));
+//        deleteButton.click();
+//        
+//        WebElement deleteConfirm = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("#categoryDeleteDialog button[data-task='confirm']")));
+//        deleteConfirm.click();
     }
 }
