@@ -144,6 +144,7 @@ public class TestCategories {
 //        categoriesPage.deleteFirstCategory(driver, wait);
         categoriesPage.deleteRandomCategory(driver, wait);
 //        categoriesPage.deleteLastCategory(driver, wait);
+
 //        WebElement tBody = wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("ui-sortable")));
 //        List<WebElement> rows = tBody.findElements(By.tagName("tr"));
 //

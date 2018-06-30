@@ -16,6 +16,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import pages.RegionsPage;
 
 
 public class TestRegions {
@@ -45,7 +46,7 @@ public class TestRegions {
     
     @AfterClass
     public static void tearDownClass() throws InterruptedException {
-        Thread.sleep(3000);
+        Thread.sleep(8000);
         driver.quit();
     }
     
@@ -63,66 +64,96 @@ public class TestRegions {
      @Test
      public void testCreateNewRegion() {
             
-            WebElement addRegionButton = driver.findElement(By.className("pull-right"));
-            addRegionButton.click();
+            RegionsPage regionsPage = new RegionsPage();
+            regionsPage.createNewRegion(driver);
+                    
+//            WebElement addRegionButton = driver.findElement(By.className("pull-right"));
+//            addRegionButton.click();
+
+//            WebElement titleRegionField = driver.findElement(By.id("title"));
+//            titleRegionField.sendKeys(Helper.getRandomText());
             
-            WebElement titleRegionField = driver.findElement(By.id("title"));
-            titleRegionField.sendKeys(Helper.getRandomText());
-            
-            WebElement saveRegionButton = driver.findElement(By.id("save-region-button"));
-            saveRegionButton.click();
+//            WebElement saveRegionButton = driver.findElement(By.id("save-region-button"));
+//            saveRegionButton.click();
      }
      
      @Test
-     public void editFirstRegion(){
+     public void testEditFirstRegion(){
+        
+        RegionsPage regionsPage = new RegionsPage();
+//        regionsPage.getRowsFromTable(wait);
+        regionsPage.editFirstRegion(wait, driver);
+
+     }
+     
+     @Test
+     public void testEditRandomRegion(){
+        
+        RegionsPage regionsPage = new RegionsPage();
+//        regionsPage.getRowsFromTable(wait);
+        regionsPage.editRandomRegion(wait, driver);
+     }
+     
+     @Test
+     public void testEditLastRagion(){
          
-        WebElement tBody = wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("ui-sortable")));
-        List<WebElement> rows = tBody.findElements(By.tagName("tr"));
-
-        System.out.println("Number of rows: " + rows.size());
-
-        WebElement firstRow = rows.get(0);
-        WebElement editButton = firstRow.findElement(By.cssSelector(".ui-sortable a[title='Edit']"));
-        editButton.click();
-        
-        WebElement titleRegionField = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("title")));
-        titleRegionField.clear();
-        titleRegionField.sendKeys(Helper.getRandomText());
-        
-        WebElement saveRegionButton = driver.findElement(By.id("save-region-button"));
-        saveRegionButton.click();
+        RegionsPage regionsPage = new RegionsPage();
+        regionsPage.editLastRegion(wait, driver);
      }
      
      @Test
      public void testFirstRegionDisable(){
         
-        WebElement tBody = wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("ui-sortable")));
-        List<WebElement> rows = tBody.findElements(By.tagName("tr"));
-
-        System.out.println("Number of rows: " + rows.size());
-
-        WebElement firstRow = rows.get(0);
-        WebElement disableRegionButton = firstRow.findElement(By.cssSelector("button[title='Disable']"));
-        disableRegionButton.click();
+         RegionsPage regionsPage = new RegionsPage();
+         regionsPage.disableFirstRegion(wait);
+//        WebElement tBody = wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("ui-sortable")));
+//        List<WebElement> rows = tBody.findElements(By.tagName("tr"));
+//
+//        System.out.println("Number of rows: " + rows.size());
         
-        WebElement disableConfirm = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("#regionDisableDialog button[data-task='confirm']")));
-        disableConfirm.click();
+//        WebElement firstRow = rows.get(0);
+//        WebElement disableRegionButton = firstRow.findElement(By.cssSelector("button[title='Disable']"));
+//        disableRegionButton.click();
+        
+//        WebElement disableConfirm = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("#regionDisableDialog button[data-task='confirm']")));
+//        disableConfirm.click();
      }
      
      @Test
      public void testFirstRegionEnable(){
+         RegionsPage regionsPage = new RegionsPage();
+         regionsPage.enableFirstRegion(wait);
+//        WebElement tBody = wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("ui-sortable")));
+//        List<WebElement> rows = tBody.findElements(By.tagName("tr"));
+//
+//        System.out.println("Number of rows: " + rows.size());
+//
+//        WebElement firstRow = rows.get(0);
+//        WebElement enableRegionButton = firstRow.findElement(By.cssSelector("button[title='Enable']"));
+//        enableRegionButton.click();
         
-        WebElement tBody = wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("ui-sortable")));
-        List<WebElement> rows = tBody.findElements(By.tagName("tr"));
-
-        System.out.println("Number of rows: " + rows.size());
-
-        WebElement firstRow = rows.get(0);
-        WebElement enableRegionButton = firstRow.findElement(By.cssSelector("button[title='Enable']"));
-        enableRegionButton.click();
-        
-        WebElement enableConfirm = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("#regionEnableDialog button[data-task='confirm']")));
-        enableConfirm.click();
-        
+//        WebElement enableConfirm = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("#regionEnableDialog button[data-task='confirm']")));
+//        enableConfirm.click();
+     }
+     
+    @Test
+    public void testFirstRegionDelete(){
+          RegionsPage regionsPage = new RegionsPage();
+          regionsPage.deleteFirstRegion(driver, wait);
+    
+     }
+    
+     @Test
+    public void testRandomRegionDelete(){
+          RegionsPage regionsPage = new RegionsPage();
+          regionsPage.deleteRandomRegion(driver, wait);
+    
+     }
+    
+    @Test
+    public void testLastRegionDelete(){
+          RegionsPage regionsPage = new RegionsPage();
+          regionsPage.deleteLastRegion(driver, wait);
+    
      }
 }
